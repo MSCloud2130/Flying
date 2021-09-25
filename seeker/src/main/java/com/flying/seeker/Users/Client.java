@@ -7,6 +7,7 @@ import com.flying.seeker.product.Product;
 import com.flying.seeker.review.Review;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Clients")
@@ -19,21 +20,21 @@ public class Client {
     private String img;
     private String password;
     private String token;
+    @DBRef
     private List<Product> purchased_product = new ArrayList<>();
+    @DBRef
     private List<Review> my_reviews = new ArrayList<>();
 
     public Client() {
     }
 
-    public Client(String name, String email, String img, String password, String token, List<Product> purchased_product,
-            List<Review> my_reviews) {
+    public Client(String name, String email, String img, String password, String token) {
         this.name = name;
         this.email = email;
         this.img = img;
         this.password = password;
         this.token = token;
-        this.purchased_product = purchased_product;
-        this.my_reviews = my_reviews;
+
     }
 
     public String get_id() {
@@ -88,12 +89,20 @@ public class Client {
         return purchased_product;
     }
 
+    public void addProduct(Product p) {
+        this.purchased_product.add(p);
+    }
+
     public void setPurchased_product(List<Product> purchased_product) {
         this.purchased_product = purchased_product;
     }
 
     public List<Review> getMy_reviews() {
         return my_reviews;
+    }
+
+    public void addReview(Review r) {
+        this.my_reviews.add(r);
     }
 
     public void setMy_reviews(List<Review> my_reviews) {

@@ -1,6 +1,10 @@
 package com.flying.seeker.review;
 
+import com.flying.seeker.Users.Client;
+import com.flying.seeker.product.Product;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Reviews")
@@ -8,14 +12,10 @@ public class Review {
 
     @Id
     private String _id;
-    private String product_id;
-    private String owner_id;
     private String comentary;
     private Integer stars;
 
-    public Review(String product_id, String owner_id, String comentary, Integer stars) {
-        this.product_id = product_id;
-        this.owner_id = owner_id;
+    public Review(String comentary, Integer stars) {
         this.comentary = comentary;
         this.stars = stars;
     }
@@ -29,22 +29,6 @@ public class Review {
 
     public void set_id(String _id) {
         this._id = _id;
-    }
-
-    public String getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
-    }
-
-    public String getOwner_id() {
-        return owner_id;
-    }
-
-    public void setOwner_id(String owner_id) {
-        this.owner_id = owner_id;
     }
 
     public String getComentary() {

@@ -8,6 +8,7 @@ import com.flying.seeker.Users.Seller;
 import com.flying.seeker.review.Review;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Products")
@@ -23,12 +24,12 @@ public class Product {
     private String place_arrival;
     private String place_depature;
     private String img;
-    private Seller product_owner;
     private List<String> categories = new ArrayList<>();
+    @DBRef
     private List<Review> review = new ArrayList<>();
 
     public Product(String name, Double price, Date date, String description, Boolean isOnOffer, String place_arrival,
-            String place_depature, String img, Seller product_owner, List<String> categories, List<Review> review) {
+            String place_depature, String img, List<String> categories) {
         this.name = name;
         this.price = price;
         this.date = date;
@@ -37,9 +38,8 @@ public class Product {
         this.place_arrival = place_arrival;
         this.place_depature = place_depature;
         this.img = img;
-        this.product_owner = product_owner;
         this.categories = categories;
-        this.review = review;
+
     }
 
     public Product() {
@@ -115,14 +115,6 @@ public class Product {
 
     public void setImg(String img) {
         this.img = img;
-    }
-
-    public Seller getProduct_owner() {
-        return product_owner;
-    }
-
-    public void setProduct_owner(Seller product_owner) {
-        this.product_owner = product_owner;
     }
 
     public List<Review> getReview() {

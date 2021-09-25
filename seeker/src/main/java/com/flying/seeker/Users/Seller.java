@@ -6,6 +6,7 @@ import java.util.List;
 import com.flying.seeker.product.Product;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Sellers")
@@ -18,22 +19,26 @@ public class Seller {
     private String password;
     private String token;
     private String img;
+    @DBRef
     private List<Product> my_products = new ArrayList<>();
 
     public Seller() {
     }
 
-    public Seller(String name, String email, String password, String token, String img, List<Product> my_products) {
+    public Seller(String name, String email, String password, String token, String img) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.token = token;
         this.img = img;
-        this.my_products = my_products;
     }
 
     public List<Product> getMy_products() {
         return my_products;
+    }
+
+    public void addProduct(Product p) {
+        this.my_products.add(p);
     }
 
     public void setMy_products(List<Product> my_products) {
