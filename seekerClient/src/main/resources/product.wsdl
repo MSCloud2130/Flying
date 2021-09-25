@@ -19,6 +19,9 @@
                 <xs:sequence>
                     <xs:element name="_id" type="xs:string" />
                     <xs:element name="name" type="xs:string" />
+                    <xs:element name="transport" type="xs:string" />
+                    <xs:element name="accommodation" type="xs:string" />
+                    <xs:element name="food_service" type="xs:string" />
                     <xs:element name="price" type="xs:double" />
                     <xs:element name="date" type="xs:date" />
                     <xs:element name="description" type="xs:string" />

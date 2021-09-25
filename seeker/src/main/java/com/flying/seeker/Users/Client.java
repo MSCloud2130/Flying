@@ -16,6 +16,7 @@ public class Client {
     @Id
     private String _id;
     private String name;
+    private Integer age;
     private String email;
     private String img;
     private String password;
@@ -28,13 +29,21 @@ public class Client {
     public Client() {
     }
 
-    public Client(String name, String email, String img, String password, String token) {
+    public Client(String name, Integer age, String email, String img, String password, String token) {
         this.name = name;
+        this.age = age;
         this.email = email;
         this.img = img;
         this.password = password;
         this.token = token;
+    }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String get_id() {

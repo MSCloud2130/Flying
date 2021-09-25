@@ -26,6 +26,9 @@ public class ProductService {
                 Product productCopy = new Product();
                 productCopy.setId(product.get_id());
                 productCopy.setName(product.getName());
+                productCopy.setTransport(product.getTransport());
+                productCopy.setAccommodation(product.getAccommodation());
+                productCopy.setFoodService(product.getFood_service());
                 productCopy.setPrice(product.getPrice());
                 GregorianCalendar gCalendar = new GregorianCalendar();
                 gCalendar.setTime(product.getDate());

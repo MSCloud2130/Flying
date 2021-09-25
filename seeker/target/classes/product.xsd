@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://seeker.flying.com" targetNamespace="http://seeker.flying.com" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://gen.seeker.flying.com" targetNamespace="http://gen.seeker.flying.com" elementFormDefault="qualified">
     <xs:element name="getProductsRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string" />
+                <xs:element name="searchString" type="xs:string" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -16,14 +16,17 @@
     </xs:element>
     <xs:complexType name="Product">
         <xs:sequence>
+            <xs:element name="_id" type="xs:string" />
             <xs:element name="name" type="xs:string" />
+            <xs:element name="transport" type="xs:string" />
+            <xs:element name="accommodation" type="xs:string" />
+            <xs:element name="food_service" type="xs:string" />
             <xs:element name="price" type="xs:double" />
             <xs:element name="date" type="xs:date" />
             <xs:element name="description" type="xs:string" />
             <xs:element name="isOnOffer" type="xs:boolean" />
             <xs:element name="place_arrival" type="xs:string" />
             <xs:element name="place_depature" type="xs:string" />
-            <xs:element name="product_owner" type="xs:string" />
             <xs:element name="img" type="xs:string" />
             <xs:element name="categories" type="tns:ArrayOfString" />
             <xs:element name="reviews" type="tns:ArrayOfReviews" />
@@ -31,6 +34,7 @@
     </xs:complexType>
     <xs:complexType name="Review">
         <xs:sequence>
+            <xs:element name="_id" type="xs:string" />
             <xs:element name="comentary" type="xs:string" />
             <xs:element name="stars" type="xs:int" />
         </xs:sequence>

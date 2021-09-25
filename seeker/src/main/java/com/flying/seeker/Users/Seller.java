@@ -15,6 +15,9 @@ public class Seller {
     private String _id;
 
     private String name;
+    private Integer age;
+    private String phone;
+    private String social;
     private String email;
     private String password;
     private String token;
@@ -25,12 +28,40 @@ public class Seller {
     public Seller() {
     }
 
-    public Seller(String name, String email, String password, String token, String img) {
+    public Seller(String name, Integer age, String phone, String social, String email, String password, String token,
+            String img) {
         this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.social = social;
         this.email = email;
         this.password = password;
         this.token = token;
         this.img = img;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getSocial() {
+        return social;
+    }
+
+    public void setSocial(String social) {
+        this.social = social;
     }
 
     public List<Product> getMy_products() {
