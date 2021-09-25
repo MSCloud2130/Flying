@@ -9,11 +9,7 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.flying.seeker.ArrayOfProducts;
-import com.flying.seeker.ArrayOfReviews;
-import com.flying.seeker.ArrayOfString;
-import com.flying.seeker.Product;
-import com.flying.seeker.Review;
+import com.flying.seeker.gen.*;
 
 import org.springframework.stereotype.Service;
 

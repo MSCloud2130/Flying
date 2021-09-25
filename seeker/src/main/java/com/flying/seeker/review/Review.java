@@ -1,27 +1,21 @@
 package com.flying.seeker.review;
 
-import com.flying.seeker.product.Product;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import ch.qos.logback.core.net.server.Client;
-import lombok.Data;
-
-@Data
-@Document()
+@Document(collection = "Reviews")
 public class Review {
 
     @Id
-    private String id;
-    private Product product;
-    private Client owner;
+    private String _id;
+    private String product_id;
+    private String owner_id;
     private String comentary;
     private Integer stars;
 
-    public Review(Product product, Client owner, String comentary, Integer stars) {
-        this.product = product;
-        this.owner = owner;
+    public Review(String product_id, String owner_id, String comentary, Integer stars) {
+        this.product_id = product_id;
+        this.owner_id = owner_id;
         this.comentary = comentary;
         this.stars = stars;
     }
@@ -29,28 +23,28 @@ public class Review {
     public Review() {
     }
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getProduct_id() {
+        return product_id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
-    public Client getOwner() {
-        return owner;
+    public String getOwner_id() {
+        return owner_id;
     }
 
-    public void setOwner(Client owner) {
-        this.owner = owner;
+    public void setOwner_id(String owner_id) {
+        this.owner_id = owner_id;
     }
 
     public String getComentary() {

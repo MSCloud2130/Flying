@@ -1,7 +1,6 @@
 package com.flying.seeker.endpoint;
 
-import com.flying.seeker.GetProductsRequest;
-import com.flying.seeker.GetProductsResponse;
+import com.flying.seeker.gen.*;
 import com.flying.seeker.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
