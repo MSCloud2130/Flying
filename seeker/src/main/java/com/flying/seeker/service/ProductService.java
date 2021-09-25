@@ -1,8 +1,10 @@
 package com.flying.seeker.service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -10,54 +12,56 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.flying.seeker.gen.*;
+import com.flying.seeker.product.ProductRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
-    private static final ArrayOfProducts products = new ArrayOfProducts();
+    @Autowired
+    ProductRepository productRepository;
 
-    @PostConstruct
-    public void init() throws DatatypeConfigurationException {
-        // TODO: fill array
-        ArrayOfReviews reviews = new ArrayOfReviews();
-        ArrayOfString categories = new ArrayOfString();
-        Review r = new Review();
-        r.setComentary("Soy un comentario");
-        r.setStars(5);
-        Review r2 = new Review();
-        r2.setComentary("Soy un comentario o no?");
-        r2.setStars(4);
-        reviews.getReview().add(r);
-        reviews.getReview().add(r2);
-        categories.getString().add("asd");
-        categories.getString().add("saddsa");
-        Product pr = new Product();
-        pr.setCategories(categories);
-        pr.setReviews(reviews);
-        pr.setName("nom");
-        pr.setPrice(18.0);
-
-        Date fecha = new Date();
-        Instant ins = Instant.now();
-        GregorianCalendar gCalendar = new GregorianCalendar();
-        gCalendar.setTime(fecha.from(ins));
-        XMLGregorianCalendar xCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCalendar);
-        pr.setDate(xCalendar);
-
-        pr.setDescription("ssssssss");
-        pr.setIsOnOffer(true);
-        pr.setPlaceArrival("BOG");
-        pr.setPlaceDepature("MED");
-        pr.setProductOwner("IDsad");
-        pr.setImg("img");
-
-        products.getProduct().add(pr);
-
-    }
-
-    public ArrayOfProducts getProducts(String name) {
-        return products;
+    public ArrayOfProducts getProducts(String searchString) {
+        List<com.flying.seeker.product.Product> productsDB = productRepository.findAll();
+        ArrayOfProducts filter_products = new ArrayOfProducts();
+        productsDB.forEach(product -> {
+            if (product.getName().contains(searchString) || product.getDescription().contains(searchString)) {
+                Product productCopy = new Product();
+                productCopy.setId(product.get_id());
+                productCopy.setName(product.getName());
+                productCopy.setPrice(product.getPrice());
+                GregorianCalendar gCalendar = new GregorianCalendar();
+                gCalendar.setTime(product.getDate());
+                XMLGregorianCalendar xCalendar;
+                try {
+                    xCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCalendar);
+                    productCopy.setDate(xCalendar);
+                } catch (DatatypeConfigurationException e) {
+                    e.printStackTrace();
+                }
+                productCopy.setDescription(product.getDescription());
+                productCopy.setIsOnOffer(product.getIsOnOffer());
+                productCopy.setPlaceArrival(product.getPlace_arrival());
+                productCopy.setImg(product.getImg());
+                ArrayOfString arrayOfString = new ArrayOfString();
+                product.getCategories().forEach(category -> {
+                    arrayOfString.getString().add(category);
+                });
+                productCopy.setCategories(arrayOfString);
+                ArrayOfReviews arrayOfReviews = new ArrayOfReviews();
+                product.getReview().forEach(review -> {
+                    Review r = new Review();
+                    r.setId(review.get_id());
+                    r.setComentary(review.getComentary());
+                    r.setStars(review.getStars());
+                    arrayOfReviews.getReview().add(r);
+                });
+                productCopy.setReviews(arrayOfReviews);
+                filter_products.getProduct().add(productCopy);
+            }
+        });
+        return filter_products;
     }
 
 }

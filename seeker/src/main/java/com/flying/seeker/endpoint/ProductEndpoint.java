@@ -18,11 +18,11 @@ public class ProductEndpoint {
         this.productService = productService;
     }
 
-    @PayloadRoot(namespace = "http://seeker.flying.com", localPart = "getProductsRequest")
+    @PayloadRoot(namespace = "http://gen.seeker.flying.com", localPart = "getProductsRequest")
     @ResponsePayload
     public GetProductsResponse getProductsRequest(@RequestPayload GetProductsRequest request) {
         GetProductsResponse response = new GetProductsResponse();
-        response.setProducts(productService.getProducts("name"));
+        response.setProducts(productService.getProducts(request.getSearchString()));
         return response;
     }
 }
