@@ -9,7 +9,7 @@ public class ProductClient extends WebServiceGatewaySupport {
 
     public GetProductsResponse getProducts(String name) {
         GetProductsRequest request = new GetProductsRequest();
-        request.setName(name);
+        request.setSearchString(name);
         GetProductsResponse response = (GetProductsResponse) getWebServiceTemplate().marshalSendAndReceive(request);
         return response;
     }
