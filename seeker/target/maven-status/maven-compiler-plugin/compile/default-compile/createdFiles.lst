@@ -1,0 +1,15 @@
+com/flying/seeker/ArrayOfReviews.class
+com/flying/seeker/product/Product.class
+com/flying/seeker/config/SoapWebServiceConfig.class
+com/flying/seeker/ArrayOfProducts.class
+com/flying/seeker/package-info.class
+com/flying/seeker/GetProductsResponse.class
+com/flying/seeker/service/ProductService.class
+com/flying/seeker/ObjectFactory.class
+com/flying/seeker/Review.class
+com/flying/seeker/endpoint/ProductEndpoint.class
+com/flying/seeker/GetProductsRequest.class
+com/flying/seeker/review/Review.class
+com/flying/seeker/ArrayOfString.class
+com/flying/seeker/Product.class
+com/flying/seeker/SeekerApplication.class
