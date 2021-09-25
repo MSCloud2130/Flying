@@ -90,12 +90,17 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/xml/bind/jaxb-api/2.3.0-b170201.1204/jaxb-api-2.3.0-b170201.1204.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/wsdl4j/wsdl4j/1.6.3/wsdl4j-1.6.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/glassfish/jaxb/jaxb-runtime/2.3.0-b170127.1453/jaxb-runtime-2.3.0-b170127.1453.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/glassfish/jaxb/jaxb-core/2.3.0-b170127.1453/jaxb-core-2.3.0-b170127.1453.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/glassfish/jaxb/txw2/2.3.5/txw2-2.3.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/sun/istack/istack-commons-runtime/3.0.4/istack-commons-runtime-3.0.4.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/jvnet/staxex/stax-ex/1.7.8/stax-ex-1.7.8.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/sun/xml/fastinfoset/FastInfoset/1.2.13/FastInfoset-1.2.13.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/sun/xml/messaging/saaj/saaj-impl/1.5.1/saaj-impl-1.5.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/activation/jakarta.activation-api/1.2.2/jakarta.activation-api-1.2.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/xml/soap/jakarta.xml.soap-api/1.4.2/jakarta.xml.soap-api-1.4.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/jvnet/mimepull/mimepull/1.9.15/mimepull-1.9.15.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/jvnet/staxex/stax-ex/1.8.1/stax-ex-1.8.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/ws/spring-ws-core/3.1.1/spring-ws-core-3.1.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/ws/spring-xml/3.1.1/spring-xml-3.1.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-aop/5.3.10/spring-aop-5.3.10.jar" enabled="true" runInBatchMode="false"/>

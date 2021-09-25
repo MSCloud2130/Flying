@@ -21,6 +21,7 @@ public class Client {
     private String img;
     private String password;
     private String token;
+    private Double wallet;
     @DBRef
     private List<Product> purchased_product = new ArrayList<>();
     @DBRef
@@ -29,13 +30,23 @@ public class Client {
     public Client() {
     }
 
-    public Client(String name, Integer age, String email, String img, String password, String token) {
+    public Client(String name, Integer age, String email, String img, String password, String token, Double wallet) {
+
         this.name = name;
         this.age = age;
         this.email = email;
         this.img = img;
         this.password = password;
         this.token = token;
+        this.wallet = wallet;
+    }
+
+    public Double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Double wallet) {
+        this.wallet = wallet;
     }
 
     public Integer getAge() {

@@ -22,6 +22,7 @@ public class Seller {
     private String password;
     private String token;
     private String img;
+    private Double wallet;
     @DBRef
     private List<Product> my_products = new ArrayList<>();
 
@@ -29,7 +30,7 @@ public class Seller {
     }
 
     public Seller(String name, Integer age, String phone, String social, String email, String password, String token,
-            String img) {
+            String img, Double wallet) {
         this.name = name;
         this.age = age;
         this.phone = phone;
@@ -38,6 +39,15 @@ public class Seller {
         this.password = password;
         this.token = token;
         this.img = img;
+        this.wallet = wallet;
+    }
+
+    public Double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Double wallet) {
+        this.wallet = wallet;
     }
 
     public Integer getAge() {
