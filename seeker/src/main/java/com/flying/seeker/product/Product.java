@@ -16,6 +16,9 @@ public class Product {
     @Id
     private String _id;
     private String name;
+    private String transport;
+    private String accommodation;
+    private String food_service;
     private Double price;
     private Date date;
     private String description;
@@ -27,9 +30,13 @@ public class Product {
     @DBRef
     private List<Review> review = new ArrayList<>();
 
-    public Product(String name, Double price, Date date, String description, Boolean isOnOffer, String place_arrival,
-            String place_depature, String img, List<String> categories) {
+    public Product(String name, String transport, String accommodation, String food_service, Double price, Date date,
+            String description, Boolean isOnOffer, String place_arrival, String place_depature, String img,
+            List<String> categories) {
         this.name = name;
+        this.transport = transport;
+        this.accommodation = accommodation;
+        this.food_service = food_service;
         this.price = price;
         this.date = date;
         this.description = description;
@@ -38,7 +45,30 @@ public class Product {
         this.place_depature = place_depature;
         this.img = img;
         this.categories = categories;
+    }
 
+    public String getTransport() {
+        return transport;
+    }
+
+    public void setTransport(String transport) {
+        this.transport = transport;
+    }
+
+    public String getAccommodation() {
+        return accommodation;
+    }
+
+    public void setAccommodation(String accommodation) {
+        this.accommodation = accommodation;
+    }
+
+    public String getFood_service() {
+        return food_service;
+    }
+
+    public void setFood_service(String food_service) {
+        this.food_service = food_service;
     }
 
     public Product() {
