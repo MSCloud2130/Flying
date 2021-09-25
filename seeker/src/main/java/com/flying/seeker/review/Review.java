@@ -1,10 +1,6 @@
 package com.flying.seeker.review;
 
-import com.flying.seeker.Users.Client;
-import com.flying.seeker.product.Product;
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Reviews")

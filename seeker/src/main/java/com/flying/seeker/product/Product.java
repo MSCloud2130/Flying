@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.flying.seeker.Users.Seller;
 import com.flying.seeker.review.Review;
 
 import org.springframework.data.annotation.Id;
