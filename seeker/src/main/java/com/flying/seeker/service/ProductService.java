@@ -1,12 +1,8 @@
 package com.flying.seeker.service;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -43,6 +39,7 @@ public class ProductService {
                 productCopy.setDescription(product.getDescription());
                 productCopy.setIsOnOffer(product.getIsOnOffer());
                 productCopy.setPlaceArrival(product.getPlace_arrival());
+                productCopy.setPlaceDepature(product.getPlace_depature());
                 productCopy.setImg(product.getImg());
                 ArrayOfString arrayOfString = new ArrayOfString();
                 product.getCategories().forEach(category -> {
