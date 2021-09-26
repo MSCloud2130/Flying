@@ -145,4 +145,9 @@ public class Product {
         this.categories = categories;
     }
 
+    @Override
+    public String toString() {
+        return "Product [_id=" + _id + ", price=" + price + "]";
+    }
+
 }

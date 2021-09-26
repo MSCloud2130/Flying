@@ -1,24 +1,21 @@
 package com.flying.cart.Cart;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.flying.cart.Product.Product;
-import com.flying.cart.User.Client;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "paymentLogs")
 public class PaymentLog {
     @Id
     private String _id;
-    private Double payment;
-    @DBRef
-    private Client client;
-    @DBRef
-    private List<Product> products = new ArrayList<>();
+    private Date date;
+
+    private String product;
+
+    private String buyer;
+
+    private String seller;
 
     public PaymentLog() {
     }
@@ -31,28 +28,36 @@ public class PaymentLog {
         this._id = _id;
     }
 
-    public Double getPayment() {
-        return payment;
+    public Date getDate() {
+        return date;
     }
 
-    public void setPayment(Double payment) {
-        this.payment = payment;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Client getClient() {
-        return client;
+    public String getProduct() {
+        return product;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setProduct(String product) {
+        this.product = product;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public String getBuyer() {
+        return buyer;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setBuyer(String buyer) {
+        this.buyer = buyer;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
     }
 
 }

@@ -121,4 +121,8 @@ public class Seller {
         this.img = img;
     }
 
+    public void addToWallet(Double value) {
+        this.wallet += value;
+    }
+
 }

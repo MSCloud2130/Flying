@@ -37,6 +37,14 @@ public class Client {
         return wallet;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     public void setWallet(Double wallet) {
         this.wallet = wallet;
     }
@@ -119,6 +127,16 @@ public class Client {
 
     public void setMy_reviews(List<Review> my_reviews) {
         this.my_reviews = my_reviews;
+    }
+
+    public void discountWallet(Double value) {
+        this.wallet = this.wallet - value;
+    }
+
+    public boolean isThereEnoughMoney(Double value) {
+        if (this.wallet >= value)
+            return true;
+        return false;
     }
 
 }
