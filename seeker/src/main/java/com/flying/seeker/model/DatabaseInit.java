@@ -1,6 +1,7 @@
 package com.flying.seeker.model;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,24 +42,30 @@ public class DatabaseInit implements ApplicationRunner {
                 clientRepository.deleteAll();
                 reviewRepository.deleteAll();
 
-                Client c1 = new Client("Juan Manuel", 32, "email@gmail.com", "img.com", "=3dad!23w", "token",
+                List<String> tokens = new ArrayList<>();
+                for (int i = 0; i < 7; i++) {
+                        String token = "token" + String.valueOf(i);
+                        tokens.add(token);
+                }
+                Client c1 = new Client("Juan Manuel", 32, "email@gmail.com", "img.com", "=3dad!23w", tokens.get(0),
                                 5000000.00);
-                Client c2 = new Client("Diego Arroyo", 25, "email2@gmail.com", "img.com", "=3dad!23w", "token",
+                Client c2 = new Client("Diego Arroyo", 25, "email2@gmail.com", "img.com", "=3dad!23w", tokens.get(1),
                                 200000.00);
-                Client c3 = new Client("Nelson Mosquera", 23, "email3@gmail.com", "img.com", "=3dad!23w", "token",
+                Client c3 = new Client("Nelson Mosquera", 23, "email3@gmail.com", "img.com", "=3dad!23w", tokens.get(2),
                                 10000000.00);
-                Client c4 = new Client("Juan Carlos", 45, "emai4l@gmail.com", "img.com", "=3dad!23w", "token", 0.0);
+                Client c4 = new Client("Juan Carlos", 45, "emai4l@gmail.com", "img.com", "=3dad!23w", tokens.get(3),
+                                0.0);
                 clientRepository.insert(c1);
                 clientRepository.insert(c2);
                 clientRepository.insert(c3);
                 clientRepository.insert(c4);
 
                 Seller s1 = new Seller("David Suarez", 52, "300-558-4785", "www.social2.com", "email5@hotmail.com",
-                                "password", "token", "img.com", 500000.00);
+                                "password", tokens.get(4), "img.com", 500000.00);
                 Seller s2 = new Seller("Manuel Munoz", 40, "300-258-7894", "www.social3.com", "email6@hotmail.com",
-                                "password", "token", "img.com", 500000.00);
+                                "password", tokens.get(5), "img.com", 500000.00);
                 Seller s3 = new Seller("Sara Martinez", 25, "302-236-5874", "www.social4.com", "email7@hotmail.com",
-                                "password", "token", "img.com", 500000.00);
+                                "password", tokens.get(6), "img.com", 500000.00);
 
                 sellerRepository.insert(s1);
                 sellerRepository.insert(s2);
