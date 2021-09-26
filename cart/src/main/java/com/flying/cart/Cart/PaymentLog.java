@@ -11,11 +11,11 @@ public class PaymentLog {
     private String _id;
     private Date date;
 
-    private String product;
+    private String product_id;
 
-    private String buyer;
+    private String buyer_id;
 
-    private String seller;
+    private String seller_id;
 
     public PaymentLog() {
     }
@@ -36,28 +36,28 @@ public class PaymentLog {
         this.date = date;
     }
 
-    public String getProduct() {
-        return product;
+    public String getProduct_id() {
+        return product_id;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
-    public String getBuyer() {
-        return buyer;
+    public String getBuyer_id() {
+        return buyer_id;
     }
 
-    public void setBuyer(String buyer) {
-        this.buyer = buyer;
+    public void setBuyer_id(String buyer_id) {
+        this.buyer_id = buyer_id;
     }
 
-    public String getSeller() {
-        return seller;
+    public String getSeller_id() {
+        return seller_id;
     }
 
-    public void setSeller(String seller) {
-        this.seller = seller;
+    public void setSeller_id(String seller_id) {
+        this.seller_id = seller_id;
     }
 
 }

@@ -123,9 +123,9 @@ public class CartService {
                 PaymentLog payment = new PaymentLog();
                 Seller seller = getSeller(product.get_id());
                 if (seller != null) {
-                    payment.setBuyer(client.get_id());
-                    payment.setProduct(product.get_id());
-                    payment.setSeller(seller.get_id());
+                    payment.setBuyer_id(client.get_id());
+                    payment.setProduct_id(product.get_id());
+                    payment.setSeller_id(seller.get_id());
                     Date date = new Date();
                     Instant instant = Instant.now();
                     payment.setDate(date.from(instant));
