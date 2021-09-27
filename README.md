@@ -11,9 +11,9 @@ git clone git@github.com:MSCloud2130/Flying.git
 
 ## Pasos a seguir
 
-1. [Eureka Sercer](docs/eurekaserver.md)
-2. Storage
-3. Authentication
+1. [Eureka Server](docs/eurekaserver.md)
+2. [Store](docs/store.md)
+3. [Authentication](docs/authentication.md)
 4. [Seeker](docs/seeker.md)
-5. Publication
-6. Cart
+5. [Publication](docs/publication.md)
+6. [Cart](docs/cart.md)

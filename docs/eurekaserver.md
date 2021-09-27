@@ -7,4 +7,4 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-Con esto es suficiente para utilizar él Eureka Server seguir con [Store](storage.md)
+Con esto es suficiente para utilizar él Eureka Server seguir con [Store](store.md)
