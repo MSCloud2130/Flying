@@ -61,6 +61,7 @@ public class Auth {
         RandomString string = new RandomString();
         token = string.nextString();
         seller.setToken(token);
+        seller.setWallet(0.0);
         sellerRepository.insert(seller);
         return token;
     }
