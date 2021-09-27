@@ -14,10 +14,14 @@ public class Seller {
     private String _id;
 
     private String name;
+    private Integer age;
+    private String phone;
+    private String social;
     private String email;
     private String password;
     private String token;
     private String img;
+    private Double wallet;
     @DBRef
     private List<Product> my_products = new ArrayList<>();
 
@@ -92,4 +96,35 @@ public class Seller {
         this.img = img;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getSocial() {
+        return social;
+    }
+
+    public void setSocial(String social) {
+        this.social = social;
+    }
+
+    public Double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Double wallet) {
+        this.wallet = wallet;
+    }
 }
