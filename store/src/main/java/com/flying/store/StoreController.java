@@ -1,5 +1,7 @@
 package com.flying.store;
 
+import java.util.List;
+
 import com.flying.store.models.Client;
 import com.flying.store.models.Seller;
 
@@ -130,5 +132,28 @@ public class StoreController {
         String uri = "http://auth//auth/seller/signup";
         String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
         return response;
+    }
+
+    @RequestMapping(value = "/publications/products/product/{id}", method = RequestMethod.GET, produces = "application/json")
+    public String getIndividualPublication(@PathVariable("id") String id) {
+        String uri = "http://publication//products/product/" + id;
+        return restTemplate.getForObject(uri, String.class);
+    }
+    
+    @RequestMapping(value = "/publications/products/product/{id}", method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity<String> getIndividualPublication(@PathVariable("id") String id, @RequestHeader("question") String question, @RequestHeader("token") String token) {
+        String uri = "http://publication//products/product/" + id;
+        headers.set("token", token);
+        headers.set("question", question);
+        HttpEntity httpEntity = new HttpEntity<>(headers);
+        return restTemplate.exchange(uri, HttpMethod.PUT, httpEntity, String.class);
+    }
+
+    @RequestMapping(value = "/publications/publication/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getProductsByCategory(@RequestBody List<String> category, @RequestHeader("atribute") String atribute) {
+        headers.set("atribute", atribute);
+        String uri = "http://publication//products/category/";
+        HttpEntity<List<String>> entity = new HttpEntity<>(category, headers);
+        return restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
     }
 }
