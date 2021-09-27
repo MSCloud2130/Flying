@@ -1,5 +1,8 @@
 package com.flying.store;
 
+import com.flying.store.models.Client;
+import com.flying.store.models.Seller;
+
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -101,5 +105,30 @@ public class StoreController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, null, HttpStatus.SC_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @RequestMapping(value = "/auth/client/signin", method = RequestMethod.POST, produces = "text/plain")
+    public String clientSignin(@RequestBody Client client) {
+        String uri = "http://auth//auth/client/signin";
+        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        return response;
+    }
+    @RequestMapping(value = "/auth/client/signup", method = RequestMethod.POST, produces = "text/plain")
+    public String clientSignup(@RequestBody Client client) {
+        String uri = "http://auth//auth/client/signup";
+        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        return response;
+    }
+    @RequestMapping(value = "/auth/seller/signin", method = RequestMethod.POST, produces = "text/plain")
+    public String sellerSignin(@RequestBody Seller seller) {
+        String uri = "http://auth//auth/seller/signin";
+        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        return response;
+    }
+    @RequestMapping(value = "/auth/seller/signup", method = RequestMethod.POST, produces = "text/plain")
+    public String sellerSignup(@RequestBody Seller seller) {
+        String uri = "http://auth//auth/seller/signup";
+        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        return response;
     }
 }
