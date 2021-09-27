@@ -13,6 +13,7 @@ git clone git@github.com:MSCloud2130/Flying.git
 
 1. Eureka Server
 2. Storage
-3. Seeker
-4. Publication
-5. Cart
+3. Authentication
+4. Seeker
+5. Publication
+6. Cart
