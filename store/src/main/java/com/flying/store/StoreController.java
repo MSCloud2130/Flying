@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -108,27 +109,30 @@ public class StoreController {
     }
 
     @RequestMapping(value = "/auth/client/signin", method = RequestMethod.POST, produces = "text/plain")
-    public String clientSignin(@RequestBody Client client) {
+    public ResponseEntity<String> clientSignin(@RequestBody Client client) {
         String uri = "http://auth//auth/client/signin";
-        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(uri, client, String.class);
         return response;
     }
+
     @RequestMapping(value = "/auth/client/signup", method = RequestMethod.POST, produces = "text/plain")
-    public String clientSignup(@RequestBody Client client) {
+    public ResponseEntity<String> clientSignup(@RequestBody Client client) {
         String uri = "http://auth//auth/client/signup";
-        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(uri, client, String.class);
         return response;
     }
+
     @RequestMapping(value = "/auth/seller/signin", method = RequestMethod.POST, produces = "text/plain")
-    public String sellerSignin(@RequestBody Seller seller) {
+    public ResponseEntity<String> sellerSignin(@RequestBody Seller seller) {
         String uri = "http://auth//auth/seller/signin";
-        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(uri, seller, String.class);
         return response;
     }
+
     @RequestMapping(value = "/auth/seller/signup", method = RequestMethod.POST, produces = "text/plain")
-    public String sellerSignup(@RequestBody Seller seller) {
+    public ResponseEntity<String> sellerSignup(@RequestBody Seller seller) {
         String uri = "http://auth//auth/seller/signup";
-        String response = restTemplate.postForObject(uri, HttpMethod.POST, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(uri, seller, String.class);
         return response;
     }
 }
