@@ -7,10 +7,12 @@ public class Client {
 
     private String _id;
     private String name;
+    private Integer age;
     private String email;
     private String img;
     private String password;
     private String token;
+    private Double wallet;
     private List<Product> purchased_product = new ArrayList<>();
     private List<Review> my_reviews = new ArrayList<>();
 
@@ -96,6 +98,22 @@ public class Client {
 
     public void setMy_reviews(List<Review> my_reviews) {
         this.my_reviews = my_reviews;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Double wallet) {
+        this.wallet = wallet;
     }
 
 }
