@@ -13,10 +13,12 @@ public class Client {
     @Id
     private String _id;
     private String name;
+    private Integer age;
     private String email;
     private String img;
     private String password;
     private String token;
+    private Double wallet;
     @DBRef
     private List<Product> purchased_product = new ArrayList<>();
     @DBRef
@@ -106,4 +108,19 @@ public class Client {
         this.my_reviews = my_reviews;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Double wallet) {
+        this.wallet = wallet;
+    }
 }
