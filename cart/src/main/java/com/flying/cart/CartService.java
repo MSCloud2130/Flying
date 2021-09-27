@@ -70,6 +70,7 @@ public class CartService {
         }
 
         return client.getCart();
+
     }
 
     public Cart addProduct(String token, String idProduct) {
@@ -130,8 +131,12 @@ public class CartService {
                     Instant instant = Instant.now();
                     payment.setDate(date.from(instant));
                     client.addProduct(product);
+                    client.discountWallet(price);
+                    seller.addToWallet(price);
                     payments.add(payment);
                     paymentLogRepository.save(payment);
+                    clientRepository.save(client);
+                    sellerRepository.save(seller);
                 }
             }
             cart.clearCart();
