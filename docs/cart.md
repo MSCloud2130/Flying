@@ -46,4 +46,4 @@ Este se utiliza para proceder al pago de los productos en el carrito de compras 
 ```bash
 localhost:8080/cart/payment
 ```
-![payment](Images/pay.png)
+![payment](Images/payment.png)
