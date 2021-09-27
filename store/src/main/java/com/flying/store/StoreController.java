@@ -155,12 +155,12 @@ public class StoreController {
         return restTemplate.exchange(uri, HttpMethod.PUT, httpEntity, String.class);
     }
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/products/category", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<String> getProductsByCategory(@RequestBody List<String> category,
             @RequestHeader("atribute") String atribute) {
         headers.set("atribute", atribute);
-        String uri = "http://publication//products/category/";
+        String uri = "http://publication//products/product/category";
         HttpEntity<List<String>> entity = new HttpEntity<>(category, headers);
-        return restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        return restTemplate.exchange(uri, HttpMethod.POST, entity, String.class);
     }
 }

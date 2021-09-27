@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/products")
-public class PublicationController{
-    
+public class PublicationController {
+
     @Autowired
     ProductRepository productRepository;
 
@@ -44,7 +44,8 @@ public class PublicationController{
     }
 
     @PutMapping("/product/{id}")
-    public ResponseEntity<String> putMethodName(@PathVariable("id") String id, @RequestHeader("question") String question, @RequestHeader("token") String token) {
+    public ResponseEntity<String> putMethodName(@PathVariable("id") String id,
+            @RequestHeader("question") String question, @RequestHeader("token") String token) {
         Client client = clientRepository.findByToken(token);
         if (client != null) {
             Product product = getIndividualPublication(id);
@@ -62,45 +63,39 @@ public class PublicationController{
         return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
     }
 
-    @GetMapping("/product/category")
-    public ResponseEntity<List<Product>> getProductsByCategory(@RequestBody List<String> category, @RequestHeader("atribute") String atribute) {
+    @PostMapping("/product/category")
+    public ResponseEntity<List<Product>> getProductsByCategory(@RequestBody List<String> category,
+            @RequestHeader("atribute") String atribute) {
         if (atribute.equals("transport")) {
-            return new ResponseEntity<List<Product>>(filterByTransport(category), HttpStatus.ACCEPTED); 
+            return new ResponseEntity<List<Product>>(filterByTransport(category), HttpStatus.ACCEPTED);
+        } else if (atribute.equals("accommodation")) {
+            return new ResponseEntity<List<Product>>(filterByAccomodation(category), HttpStatus.ACCEPTED);
+        } else if (atribute.equals("food_service")) {
+            return new ResponseEntity<List<Product>>(filterByFoodService(category), HttpStatus.ACCEPTED);
+        } else if (atribute.equals("category")) {
+            return new ResponseEntity<List<Product>>(filterByCategories(category), HttpStatus.ACCEPTED);
         }
-        else if (atribute.equals("accommodation")) {
-            return new ResponseEntity<List<Product>>(filterByAccomodation(category), HttpStatus.ACCEPTED); 
-        }
-        else if (atribute.equals("food_service")) {
-            return new ResponseEntity<List<Product>>(filterByFoodService(category), HttpStatus.ACCEPTED); 
-        }
-        else if (atribute.equals("category")) {
-            return new ResponseEntity<List<Product>>(filterByCategories(category), HttpStatus.ACCEPTED); 
-        }
-        
+
         return new ResponseEntity<List<Product>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     public List<Product> filterByCategories(List<String> filter) {
-        return productRepository.findAll().stream()
-                                .filter(x -> x.getCategories().stream().anyMatch(filter::contains))
-                                .collect(Collectors.toList());
+        return productRepository.findAll().stream().filter(x -> x.getCategories().stream().anyMatch(filter::contains))
+                .collect(Collectors.toList());
     }
 
     public List<Product> filterByTransport(List<String> filter) {
-        return productRepository.findAll().stream()
-                                .filter(x -> filter.contains(x.getTransport()))
-                                .collect(Collectors.toList());
+        return productRepository.findAll().stream().filter(x -> filter.contains(x.getTransport()))
+                .collect(Collectors.toList());
     }
 
     public List<Product> filterByAccomodation(List<String> filter) {
-        return productRepository.findAll().stream()
-                                .filter(x -> filter.contains(x.getAccommodation()))
-                                .collect(Collectors.toList());
+        return productRepository.findAll().stream().filter(x -> filter.contains(x.getAccommodation()))
+                .collect(Collectors.toList());
     }
 
     public List<Product> filterByFoodService(List<String> filter) {
-        return productRepository.findAll().stream()
-                                .filter(x -> filter.contains(x.getFood_service()))
-                                .collect(Collectors.toList());
+        return productRepository.findAll().stream().filter(x -> filter.contains(x.getFood_service()))
+                .collect(Collectors.toList());
     }
 }
