@@ -110,42 +110,44 @@ public class StoreController {
         }
     }
 
-    @RequestMapping(value = "/auth/client/signin", method = RequestMethod.POST, produces = "text/plain")
+    @RequestMapping(value = "/client/signin", method = RequestMethod.POST, produces = "text/plain")
     public ResponseEntity<String> clientSignin(@RequestBody Client client) {
         String uri = "http://auth//auth/client/signin";
         ResponseEntity<String> response = restTemplate.postForEntity(uri, client, String.class);
         return response;
     }
 
-    @RequestMapping(value = "/auth/client/signup", method = RequestMethod.POST, produces = "text/plain")
+    @RequestMapping(value = "/client/signup", method = RequestMethod.POST, produces = "text/plain")
     public ResponseEntity<String> clientSignup(@RequestBody Client client) {
         String uri = "http://auth//auth/client/signup";
         ResponseEntity<String> response = restTemplate.postForEntity(uri, client, String.class);
         return response;
     }
 
-    @RequestMapping(value = "/auth/seller/signin", method = RequestMethod.POST, produces = "text/plain")
+    @RequestMapping(value = "/seller/signin", method = RequestMethod.POST, produces = "text/plain")
     public ResponseEntity<String> sellerSignin(@RequestBody Seller seller) {
         String uri = "http://auth//auth/seller/signin";
         ResponseEntity<String> response = restTemplate.postForEntity(uri, seller, String.class);
         return response;
     }
 
-    @RequestMapping(value = "/auth/seller/signup", method = RequestMethod.POST, produces = "text/plain")
+    @RequestMapping(value = "/seller/signup", method = RequestMethod.POST, produces = "text/plain")
     public ResponseEntity<String> sellerSignup(@RequestBody Seller seller) {
         String uri = "http://auth//auth/seller/signup";
         ResponseEntity<String> response = restTemplate.postForEntity(uri, seller, String.class);
         return response;
     }
 
-    @RequestMapping(value = "/publications/products/product/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/products/product/{id}", method = RequestMethod.GET, produces = "application/json")
     public String getIndividualPublication(@PathVariable("id") String id) {
         String uri = "http://publication//products/product/" + id;
         return restTemplate.getForObject(uri, String.class);
     }
-    
-    @RequestMapping(value = "/publications/products/product/{id}", method = RequestMethod.PUT, produces = "application/json")
-    public ResponseEntity<String> getIndividualPublication(@PathVariable("id") String id, @RequestHeader("question") String question, @RequestHeader("token") String token) {
+
+    // hacer comentario
+    @RequestMapping(value = "/products/product/{id}", method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity<String> getIndividualPublication(@PathVariable("id") String id,
+            @RequestHeader("question") String question, @RequestHeader("token") String token) {
         String uri = "http://publication//products/product/" + id;
         headers.set("token", token);
         headers.set("question", question);
@@ -153,8 +155,9 @@ public class StoreController {
         return restTemplate.exchange(uri, HttpMethod.PUT, httpEntity, String.class);
     }
 
-    @RequestMapping(value = "/publications/publication/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<String> getProductsByCategory(@RequestBody List<String> category, @RequestHeader("atribute") String atribute) {
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> getProductsByCategory(@RequestBody List<String> category,
+            @RequestHeader("atribute") String atribute) {
         headers.set("atribute", atribute);
         String uri = "http://publication//products/category/";
         HttpEntity<List<String>> entity = new HttpEntity<>(category, headers);
