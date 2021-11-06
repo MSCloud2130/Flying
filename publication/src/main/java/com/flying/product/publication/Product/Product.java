@@ -16,21 +16,152 @@ public class Product {
     @Id
     private String _id;
     private String name;
-    private String transport;
-    private String accommodation;
-    private String food_service;
-    private Double price;
-    private Date date;
     private String description;
+    private Double price;
     private Boolean isOnOffer;
-    private String place_arrival;
-    private String place_depature;
+    private String category;
     private String img;
-    private List<String> categories = new ArrayList<>();
+    private String country;
     @DBRef
     private List<Review> review = new ArrayList<>();
 
+    // optionals
+    /**
+     * Trans: ambos dates,transport(terrestre, aereo, etc), place ambos Food: food
+     * lodging: ecoTrip
+     * 
+     */
+    private String place_arrival;
+    private String place_depature;
+    private Date date_arrival;
+    private Date date_depature;
+    private String transport;
+    private String accommodation;
+    private String food_service;
+    private String guide;
+    private Object country_info;
+
     public Product() {
+    }
+
+    public Object getCountry_info() {
+        return country_info;
+    }
+
+    public void setCountry_info(Object country_info) {
+        this.country_info = country_info;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGuide() {
+        return guide;
+    }
+
+    public void setGuide(String guide) {
+        this.guide = guide;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Boolean getIsOnOffer() {
+        return isOnOffer;
+    }
+
+    public void setIsOnOffer(Boolean isOnOffer) {
+        this.isOnOffer = isOnOffer;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public List<Review> getReview() {
+        return review;
+    }
+
+    public void setReview(List<Review> review) {
+        this.review = review;
+    }
+
+    public String getPlace_arrival() {
+        return place_arrival;
+    }
+
+    public void setPlace_arrival(String place_arrival) {
+        this.place_arrival = place_arrival;
+    }
+
+    public String getPlace_depature() {
+        return place_depature;
+    }
+
+    public void setPlace_depature(String place_depature) {
+        this.place_depature = place_depature;
+    }
+
+    public Date getDate_arrival() {
+        return date_arrival;
+    }
+
+    public void setDate_arrival(Date date_arrival) {
+        this.date_arrival = date_arrival;
+    }
+
+    public Date getDate_depature() {
+        return date_depature;
+    }
+
+    public void setDate_depature(Date date_depature) {
+        this.date_depature = date_depature;
     }
 
     public String getTransport() {
@@ -55,94 +186,6 @@ public class Product {
 
     public void setFood_service(String food_service) {
         this.food_service = food_service;
-    }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Boolean getIsOnOffer() {
-        return isOnOffer;
-    }
-
-    public void setIsOnOffer(Boolean isOnOffer) {
-        this.isOnOffer = isOnOffer;
-    }
-
-    public String getPlace_arrival() {
-        return place_arrival;
-    }
-
-    public void setPlace_arrival(String place_arrival) {
-        this.place_arrival = place_arrival;
-    }
-
-    public String getPlace_depature() {
-        return place_depature;
-    }
-
-    public void setPlace_depature(String place_depature) {
-        this.place_depature = place_depature;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public List<Review> getReview() {
-        return review;
-    }
-
-    public void setReview(List<Review> review) {
-        this.review = review;
-    }
-
-    public List<String> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
     }
 
 }
