@@ -25,12 +25,6 @@ public class Product {
     @DBRef
     private List<Review> review = new ArrayList<>();
 
-    // optionals
-    /**
-     * Trans: ambos dates,transport(terrestre, aereo, etc), place ambos Food: food
-     * lodging: ecoTrip
-     * 
-     */
     private String place_arrival;
     private String place_depature;
     private Date date_arrival;
@@ -39,17 +33,8 @@ public class Product {
     private String accommodation;
     private String food_service;
     private String guide;
-    private Object country_info;
 
     public Product() {
-    }
-
-    public Object getCountry_info() {
-        return country_info;
-    }
-
-    public void setCountry_info(Object country_info) {
-        this.country_info = country_info;
     }
 
     public String get_id() {

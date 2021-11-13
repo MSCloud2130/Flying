@@ -1,9 +1,8 @@
 package com.flying.product.publication.Product;
 
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import com.flying.product.publication.Review.Review;
@@ -16,7 +15,6 @@ import com.flying.product.publication.User.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -169,56 +167,46 @@ public class PublicationController {
         return new ResponseEntity<>(review, null, HttpStatus.OK);
     }
 
-    @GetMapping("/map")
-    public Object getMap(@RequestParam String id) {
-        Product product = productRepository.findById(id).orElseThrow();
-        ResponseEntity<Object> request = restTemplate.getForEntity("https://restcountries.com/v3.1/name/colombia",
-                Object.class);
-        return request.getBody();
-    }
-    // AIzaSyAFN7AjQZkE9PhvfNwXnQzgr-hv9cghKKU
-
-    @GetMapping("/testC")
-    public Object getMap3() {
-        ResponseEntity<Object> request = restTemplate.getForEntity("https://restcountries.com/v3.1/name/colombia",
-                Object.class);
-        // Product product =
-        // productRepository.findById("61861646fd110f010cb1dfa2").orElseThrow();
-        // product.setCountry_info(request.getBody());
-        // productRepository.save(product);
-        return request.getBody();
-    }
-
-    // Alojamiento
-
-    @GetMapping("/testL")
-    public Object getMap2() {
-        String location = "Miami";
+    @GetMapping("/country-info")
+    public Object getCountry(@RequestParam String product_id) {
+        Product product = productRepository.findById(product_id).orElseThrow();
+        String url = "";
+        url = "https://restcountries.com/v3.1/name/" + product.getCountry();
         ResponseEntity<Object> request = restTemplate
-                .getForEntity("https://maps.googleapis.com/maps/api/geocode/json?address=" + location
-                        + "&key=AIzaSyAFN7AjQZkE9PhvfNwXnQzgr-hv9cghKKU", Object.class);
+                .getForEntity("https://restcountries.com/v3.1/name/" + product.getCountry(), Object.class);
         return request.getBody();
     }
 
-    // https://maps.googleapis.com/maps/api/directions/json?origin=bogota&destination=medellin&key=AIzaSyAFN7AjQZkE9PhvfNwXnQzgr-hv9cghKKU
-    @GetMapping("/testD")
-    public Object getMap8() {
-        String origin = "Bogota";
-        String des = "medellin";
+    @GetMapping("/weather")
+    public Object getMap5(@RequestParam String product_id) {
+        Product product = productRepository.findById(product_id).orElseThrow();
+        String location = product.getPlace_arrival();
+        long days = Math.abs(TimeUnit.DAYS.convert(
+                product.getDate_arrival().getTime() - product.getDate_depature().getTime(), TimeUnit.MILLISECONDS));
 
-        ResponseEntity<Object> request = restTemplate
-                .getForEntity("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination="
-                        + des + "&key=AIzaSyAFN7AjQZkE9PhvfNwXnQzgr-hv9cghKKU", Object.class);
-        return request.getBody();
-    }
-
-    @GetMapping("/testW")
-    public Object getMap5() {
-        String location = "Miami";
-        int days = 2;
         ResponseEntity<Object> request = restTemplate.getForEntity("https://api.weatherbit.io/v2.0/forecast/daily?city="
                 + location + "&days=" + days + "&key=da7d8df4d04a4a3a9548bb3da5b4ebd0", Object.class);
         return request.getBody();
+    }
+
+    @GetMapping("/map")
+    public Object getMap(@RequestParam String product_id) {
+        Product product = productRepository.findById(product_id).orElseThrow();
+        if (product.getCategory().toLowerCase().equals("lodging")) {
+            String location = product.getPlace_arrival();
+            ResponseEntity<Object> request = restTemplate
+                    .getForEntity("https://maps.googleapis.com/maps/api/geocode/json?address=" + location
+                            + "&key=AIzaSyAFN7AjQZkE9PhvfNwXnQzgr-hv9cghKKU", Object.class);
+            return request.getBody();
+        } else if (product.getCategory().toLowerCase().equals("transport")) {
+            String origin = product.getPlace_depature();
+            String des = product.getPlace_arrival();
+            ResponseEntity<Object> request = restTemplate
+                    .getForEntity("https://maps.googleapis.com/maps/api/directions/json?origin=" + origin
+                            + "&destination=" + des + "&key=AIzaSyAFN7AjQZkE9PhvfNwXnQzgr-hv9cghKKU", Object.class);
+            return request.getBody();
+        }
+        return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("")
