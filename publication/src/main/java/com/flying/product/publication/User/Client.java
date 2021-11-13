@@ -3,6 +3,9 @@ package com.flying.product.publication.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.flying.product.publication.Product.Product;
+import com.flying.product.publication.Review.Review;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,12 +22,13 @@ public class Client {
     private String password;
     private String token;
     private Double wallet;
-    /*@DBRef
+    @DBRef
     private List<Product> purchased_product = new ArrayList<>();
     @DBRef
     private List<Review> my_reviews = new ArrayList<>();
-    @DBRef
-    private Cart cart = new Cart();*/
+    /*
+     * @DBRef private Cart cart = new Cart();
+     */
 
     public Client() {
     }
@@ -92,30 +96,21 @@ public class Client {
     public void setToken(String token) {
         this.token = token;
     }
-    /*
-    public List<Product> getPurchased_product() {
-        return purchased_product;
-    }
-
-    public void addProduct(Product p) {
-        this.purchased_product.add(p);
-    }
-
-    public void setPurchased_product(List<Product> purchased_product) {
-        this.purchased_product = purchased_product;
-    }
 
     public List<Review> getMy_reviews() {
         return my_reviews;
     }
 
-    public void addReview(Review r) {
-        this.my_reviews.add(r);
-    }
-
     public void setMy_reviews(List<Review> my_reviews) {
         this.my_reviews = my_reviews;
     }
-    */
+
+    public List<Product> getPurchased_product() {
+        return purchased_product;
+    }
+
+    public void setPurchased_product(List<Product> purchased_product) {
+        this.purchased_product = purchased_product;
+    }
 
 }

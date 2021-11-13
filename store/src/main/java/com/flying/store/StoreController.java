@@ -3,6 +3,8 @@ package com.flying.store;
 import java.util.List;
 
 import com.flying.store.models.Client;
+import com.flying.store.models.Product;
+import com.flying.store.models.Review;
 import com.flying.store.models.Seller;
 
 import org.apache.http.HttpStatus;
@@ -162,5 +164,44 @@ public class StoreController {
         String uri = "http://publication//products/product/category";
         HttpEntity<List<String>> entity = new HttpEntity<>(category, headers);
         return restTemplate.exchange(uri, HttpMethod.POST, entity, String.class);
+    }
+
+    @RequestMapping(value = "/products/product", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Product> createProduct(@RequestBody Product product, @RequestHeader("token") String token) {
+        headers.set("token", token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Product> newProduct = new HttpEntity<>(product, headers);
+        String uri = "http://publication/products";
+        ResponseEntity<Product> response = restTemplate.postForEntity(uri, newProduct, Product.class);
+        return response;
+    }
+
+    @RequestMapping(value = "/products/product/review", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Review> createReview(@RequestParam String product_id, @RequestHeader("token") String token,
+            @RequestBody Review review) {
+        headers.set("token", token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Review> newProduct = new HttpEntity<>(review, headers);
+        String uri = "http://publication/products/review?product_id=" + product_id;
+        ResponseEntity<Review> response = restTemplate.postForEntity(uri, newProduct, Review.class);
+        return response;
+    }
+
+    @RequestMapping(value = "/products/product/country-info", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Object> getCountryInfo(@RequestParam String product_id) {
+        String uri = "http://publication/products/country-info?product_id=" + product_id;
+        return restTemplate.getForEntity(uri, Object.class);
+    }
+
+    @RequestMapping(value = "/products/product/weather", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Object> getWeatherInfo(@RequestParam String product_id) {
+        String uri = "http://publication/products/weather?product_id=" + product_id;
+        return restTemplate.getForEntity(uri, Object.class);
+    }
+
+    @RequestMapping(value = "/products/product/map", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Object> getMapInfo(@RequestParam String product_id) {
+        String uri = "http://publication/products/map?product_id=" + product_id;
+        return restTemplate.getForEntity(uri, Object.class);
     }
 }
