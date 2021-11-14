@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eureka-deployment
+  name: eurekaserver-deployment
   labels:
     app: eureka-server
 spec:
