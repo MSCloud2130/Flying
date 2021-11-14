@@ -4,4 +4,4 @@ COPY . .
 
 RUN mvn clean install
 
-ENTRYPOINT [ "mvn spring-boot:run" ] 
+ENTRYPOINT [ "mvn" ,  "spring-boot:run" ] 
