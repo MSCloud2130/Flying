@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: seekermiddleware-deployment
+  name: seeker-middleware-deployment
   labels:
     app: seeker-middleware
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: seeker-middleware
-          image: juancastaneda20/seekerMiddleware:latest
+          image: juancastaneda20/seeker-middleware:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8090
