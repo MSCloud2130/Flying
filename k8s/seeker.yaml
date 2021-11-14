@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seeker-deployment
+  labels:
+    app: seeker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seeker
+  template:
+    metadata:
+      labels:
+        app: seeker
+    spec:
+      containers:
+        - name: seeker
+          image: juancastaneda20/seeker:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8091
+	  env:
+          - name: registry.host
+            valueFrom: 
+              configMapKeyRef:
+                name: eureka-configmap
+                key: eureka_url
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seeker-service
+spec:
+  selector:
+    app: seeker
+  ports:
+    - protocol: TCP
+      port: 8091
+      targetPort: 8091

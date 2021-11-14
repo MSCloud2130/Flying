@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart-deployment
+  labels:
+    app: cart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+    spec:
+      containers:
+        - name: cart
+          image: juancastaneda20/cart:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8180
+	  env:
+          - name: registry.host
+            valueFrom: 
+              configMapKeyRef:
+                name: eureka-configmap
+                key: eureka_url
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cart-service
+spec:
+  selector:
+    app: cart
+  ports:
+    - protocol: TCP
+      port: 8180
+      targetPort: 8180

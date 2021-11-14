@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seeker-middleware-deployment
+  labels:
+    app: seeker-middleware
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seeker-middleware
+  template:
+    metadata:
+      labels:
+        app: seeker-middleware
+    spec:
+      containers:
+        - name: seeker-middleware
+          image: juancastaneda20/seeker-middleware:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8090
+	  env:
+          - name: registry.host
+            valueFrom: 
+              configMapKeyRef:
+                name: eureka-configmap
+                key: eureka_url
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seeker-middleware-service
+spec:
+  selector:
+    app: seeker-middleware
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090

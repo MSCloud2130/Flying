@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publication-deployment
+  labels:
+    app: publication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publication
+  template:
+    metadata:
+      labels:
+        app: publication
+    spec:
+      containers:
+        - name: publication
+          image: juancastaneda20/publication:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8615
+	  env:
+          - name: registry.host
+            valueFrom: 
+              configMapKeyRef:
+                name: eureka-configmap
+                key: eureka_url
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publication-service
+spec:
+  selector:
+    app: publication
+  ports:
+    - protocol: TCP
+      port: 8615
+      targetPort: 8615
