@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: eureka-server
-          image: juancastaneda20/eureka-server:latest
+          image: juancastaneda20/eurekaserver:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

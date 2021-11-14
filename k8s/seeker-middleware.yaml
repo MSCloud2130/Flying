@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
         - name: seeker-middleware
-          image: juancastaneda20/seeker-middleware:latest
+          image: juancastaneda20/seekerMiddleware:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8090
-	  env:
+          env:
           - name: registry.host
             valueFrom: 
               configMapKeyRef:
