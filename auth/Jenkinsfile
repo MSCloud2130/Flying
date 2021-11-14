@@ -8,12 +8,11 @@ pipeline {
     stages {
         stage('build'){
             steps {
-                sh 'ls'
-                sh 'cd auth'
-                sh 'ls'
-                script {
-                    dockerImage = docker.build image + ':' + env.GIT_COMMIT
-                }
+                dir("auth") {
+                    script {
+                        dockerImage = docker.build image + ':' + env.GIT_COMMIT
+                    }
+                }             
             }              
         }
         stage('Push the image') {
