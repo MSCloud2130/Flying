@@ -10,7 +10,7 @@ pipeline {
             steps {
                 dir("${params.service}") {
                     script {
-                        dockerImage = docker.build image + ':' + env.GIT_COMMIT
+                        dockerImage = docker.build image + ':latest'
                     }
                 }             
             }              
@@ -27,12 +27,12 @@ pipeline {
         }
         stage ('Remove the images'){
             steps{
-                sh 'docker rmi ' + image + ':' + env.GIT_COMMIT
+                sh 'docker rmi ' + image + ':latest'
             }    
         }
         stage ('Deploy') {
             steps {
-                sh 'echo hola'
+                sh "kubectl rollout restart deployment ${params.service}-deployment"
             }
         }
     }
