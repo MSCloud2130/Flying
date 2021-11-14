@@ -2,15 +2,17 @@ pipeline {
     agent any
     environment {
         DOCKER_CREDENTIALS = 'docker-credentials'
-        image = "juancastaneda20/auth"
+        image = "juancastaneda20/${params.service}"
         dockerImage = ''
         }
     stages {
         stage('build'){
             steps {
-                script {
-                    dockerImage = docker.build image + ':' + env.GIT_COMMIT
-                }
+                dir("${params.service}") {
+                    script {
+                        dockerImage = docker.build image + ':' + env.GIT_COMMIT
+                    }
+                }             
             }              
         }
         stage('Push the image') {
@@ -30,6 +32,7 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
+                sh 'echo hola'
             }
         }
     }
