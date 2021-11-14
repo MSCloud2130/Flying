@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: seekerMiddleware-deployment
+  name: seekermiddleware-deployment
   labels:
     app: seeker-middleware
 spec:
