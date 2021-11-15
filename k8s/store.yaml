@@ -35,7 +35,9 @@ metadata:
 spec:
   selector:
     app: store
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
+      nodeport: 38080
