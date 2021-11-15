@@ -21,7 +21,7 @@ spec:
           ports:
             - containerPort: 9060
           env:
-          - name: registry.host
+          - name: REGISTRY_HOST
             valueFrom: 
               configMapKeyRef:
                 name: eureka-configmap
